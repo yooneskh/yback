@@ -1,1 +1,1 @@
-git push root@domain.com:/home/yooneskh/application/ master
+git push user@domain.com:path master
