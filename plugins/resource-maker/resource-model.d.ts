@@ -32,6 +32,8 @@ export interface IResourceProperty {
   dir?: string;
   hideInTable?: boolean;
   hidden?: boolean;
+  /* temporary */
+  nonCreating?: boolean;
 }
 
 export type IResourceProperties<T, TF> = {
