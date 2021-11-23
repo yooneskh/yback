@@ -13,13 +13,25 @@ declare module '../../plugins/resource-maker/resource-router.d.ts' {
 
 
 ResourceMaker.addGlobalActionAugmentor(action => {
+
   if (!action.stateValidators) {
     return {
       stateValidators: [],
+    };
+  }
+
+  if (!action.payloadValidators) {
+    return {
       payloadValidators: [],
+    };
+  }
+
+  if (!action.payloadProcessor) {
+    return {
       payloadProcessor: []
     };
   }
+
 });
 
 
