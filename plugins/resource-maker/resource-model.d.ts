@@ -21,6 +21,7 @@ export interface IResourceProperty {
   seriesLoopTo?: string;
   seriesBase?: Record<string, unknown>;
   seriesSchema?: IResourceProperties<any, any>;
+  itemWidth?: number;
   /* locales */
   locales?: Record<string, IResourceProperty>;
   /* meta */
