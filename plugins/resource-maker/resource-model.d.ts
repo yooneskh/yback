@@ -29,6 +29,7 @@ export interface IResourceProperty {
   items?: string[] | { value: string, text: string }[];
   itemValue?: string;
   itemText?: string;
+  width?: number;
   dir?: string;
   hideInTable?: boolean;
   hidden?: boolean;
