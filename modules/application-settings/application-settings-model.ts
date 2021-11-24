@@ -9,3 +9,6 @@ ApplicationSettingMaker.setProperties({
     titleable: true
   }
 });
+
+
+ApplicationSettingMaker.makeModel();

@@ -26,6 +26,10 @@ export class SettingResourceMaker<T, TF extends IResourceBase> {
 
   }
 
+  public makeModel() {
+    this.resourceMaker.makeModel();
+  }
+
 
   public getController() {
     return this.controller = new SettingResourceController<T, TF>(this.resourceMaker.getController())
