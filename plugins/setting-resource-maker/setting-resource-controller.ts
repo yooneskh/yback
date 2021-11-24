@@ -25,9 +25,8 @@ export class SettingResourceController<T, TF extends IResourceBase> {
     }
 
 
-    const item = await this.controller.retrieveBy({
-      selects: context.selects,
-      populates: context.populates
+    const item = await this.controller.create({
+      document: {} as unknown as T
     });
 
     this.settingId = item._id;
