@@ -65,7 +65,7 @@ export class ResourceRouter<T, TF extends IResourceBase> {
           response: rev.response,
           controller: this.controller!,
           version: rev.request.headers.get('version') ?? undefined,
-          payload: rev.body,
+          payload: rev.body || {},
           params: rev.params,
           query: rev.query,
           headers: Object.fromEntries([...rev.request.headers.entries()]),
