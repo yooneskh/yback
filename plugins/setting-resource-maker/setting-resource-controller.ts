@@ -13,59 +13,42 @@ export class SettingResourceController<T, TF extends IResourceBase> {
 
   private settingId?: typeof ObjectId;
 
+  private async ensureItem() {
+    if (this.settingId) return;
 
-  public async retrieve(context: IResourceSettingsControllerContext<T, TF>): Promise<TF> {
+    const item = await this.controller.findBy({});
 
-    if (this.settingId) {
-      return this.controller.retrieve({
-        resourceId: this.settingId,
-        selects: context.selects,
-        populates: context.populates
-      });
+    if (item) {
+      this.settingId = item._id;
+      return;
     }
 
-
-    const item = await this.controller.create({
+    const newItem = await this.controller.create({
       document: {} as unknown as T
     });
 
-    this.settingId = item._id;
-    return item;
+    this.settingId = newItem._id;
+
+  }
+
+  public async retrieve(context: IResourceSettingsControllerContext<T, TF>): Promise<TF> {
+    await this.ensureItem();
+
+    return this.controller.retrieve({
+      resourceId: this.settingId,
+      selects: context.selects,
+      populates: context.populates
+    });
 
   }
 
   public async update(context: IResourceSettingsControllerContext<T, TF>): Promise<TF> {
+    await this.ensureItem();
 
-    if (this.settingId) {
-      return this.controller.update({
-        resourceId: this.settingId,
-        payload: context.payload
-      });
-    }
-
-
-    const item = await this.controller.findBy({});
-
-    if (!item) {
-
-      const newItem = await this.controller.create({
-        document: context.payload as T
-      });
-
-      this.settingId = newItem._id;
-      return newItem;
-
-    }
-    else {
-
-      this.settingId = item._id;
-
-      return this.controller.update({
-        resourceId: this.settingId,
-        payload: context.payload
-      });
-
-    }
+    return this.controller.update({
+      resourceId: this.settingId,
+      payload: context.payload
+    });
 
   }
 
