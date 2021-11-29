@@ -25,6 +25,7 @@ export interface IResourceProperty {
   /* locales */
   locales?: Record<string, IResourceProperty>;
   /* meta */
+  vIf?: any;
   title?: string;
   titleable?: boolean;
   items?: string[] | { value: string, text: string }[];
@@ -34,6 +35,11 @@ export interface IResourceProperty {
   dir?: string;
   hideInTable?: boolean;
   hidden?: boolean;
+  longText?: boolean;
+  richText?: boolean;
+  geo?: 'point';
+  defaultCenter?: [longitude: number, latitude: number];
+  defaultZoom?: number;
   /* temporary */
   nonCreating?: boolean;
 }
