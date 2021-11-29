@@ -54,7 +54,7 @@ export function makeFiltersFromQuery(query: string) {
 
     if (value === 'Xtrue') value = true;
     if (value === 'Xfalse') value = false;
-    if (value === 'Xnull') value = undefined;
+    if (value === 'Xnull') value = null;
 
     applyOperatorOnFilter(result, key, operator, value);
 
