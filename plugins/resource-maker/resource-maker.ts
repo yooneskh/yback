@@ -26,16 +26,26 @@ export class ResourceMaker<T, TF extends IResourceBase> {
       throw new Error(`${this.name} properties is not set`);
     }
 
-    for (const property in this.properties) {
-      if (this.properties[property].ref) {
+    this.registerPropertiesPopulates(this.properties);
+
+  }
+
+  private registerPropertiesPopulates(properties: IResourceProperties<any, IResourceBase>, keyPath: string[] = []) {
+    for (const key in properties) {
+
+      if (properties[key].ref) {
         registerPopulateItem({
           model: this.name,
-          key: property,
-          ref: this.properties[property].ref!
+          key: [...keyPath, key].join('.'),
+          ref: properties[key].ref!
         });
       }
-    }
 
+      if (properties[key].type === 'series') {
+        this.registerPropertiesPopulates(properties[key].seriesSchema!, [...keyPath, key]);
+      }
+
+    }
   }
 
 
