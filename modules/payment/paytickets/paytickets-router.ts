@@ -6,7 +6,7 @@ import { EventEmitter } from '../../../services/event-emitter.ts';
 import { makePaymentSuccessPage } from '../payment-results/payment-result-success.ts';
 import { Config } from '../../../config.ts';
 import { makePaymentErrorPage } from '../payment-results/payment-result-error.ts';
-import { getGatewayHandler } from './payticket-gateways.ts';
+import { getGatewayHandler } from './paytickets-gateways.ts';
 import { BypassRouteError } from '../../../plugins/error/handleable-error.ts';
 
 
@@ -82,10 +82,12 @@ PayticketMaker.addActions({
         }
         catch (error: unknown) {
 
+          response.header('content-type', 'text/html');
+
           response.send(
             makePaymentErrorPage({
               title: Config.payment.default.title,
-              reason: (error as Record<string, unknown>).responseMessage as string || (error as Record<string, unknown>).message as string || 'An error occured',
+              reason: (error as Record<string, unknown>)?.responseMessage as string || (error as Record<string, unknown>)?.message as string || 'An error occured',
               callback: Config.payment.default.callback,
               callbackSupport: Config.payment.default.supportCallback
             })
@@ -128,6 +130,8 @@ PayticketMaker.addActions({
         EventEmitter.emit('Resource.Payticket.Payed', String(updatedPayticket._id), updatedPayticket);
         EventEmitter.emit('Resource.Factor.Payed', String(factor._id), factor);
 
+        response.header('content-type', 'text/html');
+
         response.send(
           makePaymentSuccessPage({
             title: Config.payment.default.title,
@@ -147,12 +151,14 @@ PayticketMaker.addActions({
             resolvedAt: Date.now(),
             rejected: true,
             rejectedAt: Date.now(),
-            rejectedFor: (error as Error).message
+            rejectedFor: (error as Error)?.message
           }
         });
 
         EventEmitter.emit('Resource.Payticket.Resolved', String(updatedPayticket._id), updatedPayticket);
         EventEmitter.emit('Resource.Payticket.Rejected', String(updatedPayticket._id), updatedPayticket);
+
+        response.header('content-type', 'text/html');
 
         response.send(
           makePaymentErrorPage({

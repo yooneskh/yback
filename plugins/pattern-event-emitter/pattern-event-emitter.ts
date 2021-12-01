@@ -21,7 +21,7 @@ export class PatternEventEmitter {
       .join('\\.')
     );
 
-    return new RegExp(`$${pattern}^`);
+    return new RegExp(`^${pattern}$`);
 
   }
 

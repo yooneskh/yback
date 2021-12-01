@@ -76,11 +76,18 @@ app.use('/api/media', MediaRouter);
 
 
 import { FactorRouter } from '../modules/payment/factors/factors-router.ts';
+import { PayticketRouter } from '../modules/payment/paytickets/paytickets-router.ts';
 app.use('/api/factors', FactorRouter);
+app.use('/api/paytickets', PayticketRouter);
+
+import '../modules/payment/paytickets/paytickets-gateway-zarinpal.ts';
 
 
 import { ApplicationSettingRouter } from '../modules/application-settings/application-settings-router.ts';
 app.use('/api/application-settings', ApplicationSettingRouter);
+
+
+import '../modules/notifications/sms-notification-manager.ts';
 
 
 /* extra */

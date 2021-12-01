@@ -2,9 +2,9 @@ import { IResourceBase } from '../../../plugins/resource-maker/resource-model.d.
 
 
 export interface IFactorBase {
-  user: string;
   name: string;
   amount: number;
+  user?: string;
   payed?: boolean;
   payedAt?: number;
   payticket?: string;

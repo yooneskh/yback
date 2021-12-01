@@ -28,6 +28,13 @@ export const Config = {
     defaultPermissions: ['user.*']
   },
   payment: {
+    core: {
+      verificationCallback: 'https://api.aboutshiraz.khoshghadam.com/api/paytickets',
+    },
+    zarinpal: {
+      merchantId: '',
+      sandbox: true
+    },
     default: {
       locale: 'en' as 'en' | 'fa',
       favicon: '{{website-base}}/favicon.ico',
@@ -51,6 +58,11 @@ export const Config = {
       title: 'اپلیکیشن | نتیجه پرداخت',
       callback: '{{website-base}}',
       supportCallback: '{{website-base}}'
+    }
+  },
+  notifications: {
+    kavenegar: {
+      apiKey: ''
     }
   }
 };

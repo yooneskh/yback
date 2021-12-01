@@ -2,13 +2,6 @@ import { FactorMaker } from './factors-resource.ts';
 
 
 FactorMaker.setProperties({
-  user: {
-    type: 'string',
-    ref: 'User',
-    required: true,
-    title: 'کاربر',
-    titleable: true
-  },
   name: {
     type: 'string',
     required: true,
@@ -19,6 +12,11 @@ FactorMaker.setProperties({
     type: 'number',
     required: true,
     title: 'مقدار'
+  },
+  user: {
+    type: 'string',
+    ref: 'User',
+    title: 'کاربر'
   },
   payed: {
     type: 'boolean',

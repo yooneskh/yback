@@ -3,7 +3,7 @@ import { IPayticket } from './paytickets-interfaces.d.ts';
 
 export interface IPaymentGatewayHandler {
   gateway: string;
-  initialize: (payticket: IPayticket) => Promise<void> // fills payticket.payUrl
+  initialize: (payticket: IPayticket) => Promise<IPayticket> // fills payticket.payUrl and returns it
   verify: (payticket: IPayticket) => Promise<void> // verifies tickets payment and throws in error
 }
 

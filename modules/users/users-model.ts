@@ -17,6 +17,10 @@ UserMaker.setProperties({
     type: 'string',
     ref: 'Media',
     title: 'تصویر پروفایل'
+  },
+  email: {
+    type: 'string',
+    title: 'Email'
   }
 });
 
