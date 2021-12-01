@@ -5,5 +5,5 @@ export interface IUserBase<PT = string> {
   name: string;
   phoneNumber: string;
   profile?: PT;
-  email?: PT;
+  email?: string;
 } export interface IUser<PT = string> extends IUserBase<PT>, IResourceBase {}
