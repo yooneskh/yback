@@ -143,6 +143,35 @@ export class ResourceController<T, TF extends IResourceBase> {
   }
 
 
+  public async exists(context: IResourceControllerContext<T, TF>): Promise<boolean> {
+    return !!(await this.find(context));
+  }
+
+  public async existsBy(context: IResourceControllerContext<T, TF>): Promise<boolean> {
+    return !!(await this.findBy(context));
+  }
+
+  public async countEqual(context: IResourceControllerContext<T, TF>, count: number): Promise<boolean> {
+    return await this.count(context) === count;
+  }
+
+  public async countMoreThan(context: IResourceControllerContext<T, TF>, count: number): Promise<boolean> {
+    return await this.count(context) > count;
+  }
+
+  public async countLessThan(context: IResourceControllerContext<T, TF>, count: number): Promise<boolean> {
+    return await this.count(context) < count;
+  }
+
+  public async countMoreEqualThan(context: IResourceControllerContext<T, TF>, count: number): Promise<boolean> {
+    return await this.count(context) >= count;
+  }
+
+  public async countLessEqualThan(context: IResourceControllerContext<T, TF>, count: number): Promise<boolean> {
+    return await this.count(context) <= count;
+  }
+
+
   public async create(context: IResourceControllerContext<T, TF>): Promise<TF> {
     if (!context.document) throw new Error(`${this.name} create info not given`);
 
