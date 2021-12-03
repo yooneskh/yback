@@ -151,6 +151,14 @@ export class ResourceController<T, TF extends IResourceBase> {
     return !!(await this.findBy(context));
   }
 
+  public async notExists(context: IResourceControllerContext<T, TF>): Promise<boolean> {
+    return !(await this.find(context));
+  }
+
+  public async notExistsBy(context: IResourceControllerContext<T, TF>): Promise<boolean> {
+    return !(await this.findBy(context));
+  }
+
   public async countEqual(context: IResourceControllerContext<T, TF>, count: number): Promise<boolean> {
     return await this.count(context) === count;
   }

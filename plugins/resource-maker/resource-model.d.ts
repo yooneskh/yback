@@ -23,7 +23,7 @@ export interface IResourceProperty {
   seriesSchema?: IResourceProperties<any, any>;
   itemWidth?: number;
   /* locales */
-  locales?: Record<string, IResourceProperty>;
+  locales?: Record<string, Partial<IResourceProperty>>;
   /* meta */
   vIf?: any;
   title?: string;
