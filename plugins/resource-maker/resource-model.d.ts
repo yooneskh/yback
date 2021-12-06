@@ -22,8 +22,6 @@ export interface IResourceProperty {
   seriesBase?: Record<string, unknown>;
   seriesSchema?: IResourceProperties<any, any>;
   itemWidth?: number;
-  /* locales */
-  locales?: Record<string, Partial<IResourceProperty>>;
   /* meta */
   vIf?: any;
   title?: string;
@@ -32,6 +30,7 @@ export interface IResourceProperty {
   itemValue?: string;
   itemText?: string;
   width?: number;
+  variants?: Record<string, Partial<IResourceProperty>>;
   dir?: string;
   hideInTable?: boolean;
   hidden?: boolean;
