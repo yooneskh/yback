@@ -30,9 +30,14 @@ PayticketMaker.addActions({
     permission: 'admin.payticket.create',
     provider: async ({ payload }) => {
 
-      const payticket = await createPayticket(payload.factor, payload.gateway, payload.returnUrl);
-      payticket.meta = {};
+      const payticket = await createPayticket({
+        factorId: payload.factor,
+        gateway: payload.gateway,
+        returnUrl: payload.returnUrl,
+        locale: payload.locale
+      });
 
+      payticket.meta = {};
       return payticket;
 
     }
@@ -67,9 +72,11 @@ PayticketMaker.addActions({
     path: '/:resourceId/verify',
     stateValidators: [
       async ({ resourceId, controller, response }) => {
+
+        const payticket = await controller.retrieve({ resourceId });
+
         try {
 
-          const payticket = await controller.retrieve({ resourceId });
           if (payticket.resolved || payticket.payed || payticket.rejected) {
             throw new Error('this payticket is finalized');
           }
@@ -88,6 +95,8 @@ PayticketMaker.addActions({
             makePaymentErrorPage({
               title: Config.payment.default.title,
               reason: (error as Record<string, unknown>)?.responseMessage as string || (error as Record<string, unknown>)?.message as string || 'An error occured',
+              // deno-lint-ignore no-explicit-any
+              locale: payticket.locale as any,
               callback: Config.payment.default.callback,
               callbackSupport: Config.payment.default.supportCallback
             })
@@ -96,6 +105,7 @@ PayticketMaker.addActions({
           throw new BypassRouteError('payticket state invalid');
 
         }
+
       }
     ],
     handler: async ({ resourceId, controller, response }) => {
@@ -137,6 +147,8 @@ PayticketMaker.addActions({
             title: Config.payment.default.title,
             heading: `${payticket.amount.toLocaleString()} تومان`,
             reason: factor.name,
+            // deno-lint-ignore no-explicit-any
+            locale: payticket.locale as any,
             callbackUrl: payticket.returnUrl || Config.payment.default.callback
           })
         );
@@ -164,6 +176,8 @@ PayticketMaker.addActions({
           makePaymentErrorPage({
             title: Config.payment.default.title,
             reason: (error as Record<string, unknown>).responseMessage as string || (error as Record<string, unknown>).message as string || 'An error occured',
+            // deno-lint-ignore no-explicit-any
+            locale: payticket.locale as any,
             callback: Config.payment.default.callback,
             callbackSupport: Config.payment.default.supportCallback
           })

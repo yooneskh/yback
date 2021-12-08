@@ -11,7 +11,14 @@ export const PayticketController = PayticketMaker.getController();
 PayticketMaker.addValidations({ });
 
 
-export async function createPayticket(factorId: string, gateway: string, returnUrl?: string): Promise<IPayticket> {
+export interface IPayticketCreation {
+  factorId: string;
+  gateway: string;
+  returnUrl?: string;
+  locale?: string;
+}
+
+export async function createPayticket({ factorId, gateway, returnUrl, locale }: IPayticketCreation): Promise<IPayticket> {
 
   const factor = await FactorController.retrieve({ resourceId: factorId });
   if (factor.payed) throw new Error('factor is already payed');
@@ -25,6 +32,7 @@ export async function createPayticket(factorId: string, gateway: string, returnU
       gateway,
       amount: factor.amount,
       returnUrl,
+      locale,
       meta: {}
     }
   });

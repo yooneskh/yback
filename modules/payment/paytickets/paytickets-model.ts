@@ -27,6 +27,10 @@ PayticketMaker.setProperties({
     type: 'string',
     title: 'آدرس بازگشت'
   },
+  locale: {
+    type: 'string',
+    title: 'زبان'
+  },
   resolved: {
     type: 'boolean',
     title: 'معین شده'

@@ -7,6 +7,7 @@ export interface IPayticketBase {
   amount: number;
   payUrl?: string;
   returnUrl?: string;
+  locale?: string;
   resolved?: boolean;
   resolvedAt?: number;
   payed?: boolean;
