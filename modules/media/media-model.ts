@@ -38,6 +38,11 @@ MediaMaker.setProperties({
     required: true,
     title: 'مسیر'
   },
+  variantRelatives: {
+    type: 'object',
+    title: 'مسیر انواع',
+    hidden: true
+  },
   variants: {
     type: 'object',
     title: 'انواع',
