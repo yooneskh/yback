@@ -10,6 +10,7 @@ const IMAGES_MIME_TYPES = [
   'image/jpeg',
   'image/png',
   'image/tiff',
+  'image/webp'
 ];
 
 const MEDIA_VARIANTS = [
