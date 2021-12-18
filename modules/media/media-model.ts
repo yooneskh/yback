@@ -37,6 +37,11 @@ MediaMaker.setProperties({
     type: 'string',
     required: true,
     title: 'مسیر'
+  },
+  variants: {
+    type: 'object',
+    title: 'انواع',
+    hidden: true
   }
 });
 

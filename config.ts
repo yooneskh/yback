@@ -13,6 +13,7 @@ export const Config = {
     port: 48500
   },
   media: {
+    cwd: '/home/yooneskh/yback-server',
     directory: 'media',
     baseUrl: 'http://localhost:48500'
   },

@@ -74,6 +74,8 @@ app.use('/api/authorization-roles', AuthorizationRoleRouter);
 import { MediaRouter } from '../modules/media/media-router.ts';
 app.use('/api/media', MediaRouter);
 
+import '../modules/media/media-listeners.ts';
+
 
 import { FactorRouter } from '../modules/payment/factors/factors-router.ts';
 import { PayticketRouter } from '../modules/payment/paytickets/paytickets-router.ts';

@@ -67,13 +67,16 @@ MediaMaker.addActions({
 
         const fullPath = `${Config.media.baseUrl}/${relativeFilePath}`;
 
-        return await controller.update({
+        const newMedia = await controller.update({
           resourceId: mediaBase._id,
           payload: {
             relativePath: relativeFilePath,
             path: fullPath
           }
         });
+
+        EventEmitter.emit('Resource.Media.Uploaded', String(newMedia._id), newMedia);
+        return newMedia;
 
       }
       catch (error: unknown) {
