@@ -19,10 +19,10 @@ const MEDIA_VARIANTS = [
 ];
 
 
-export async function generateMediaVariants(media: IMedia) {
+export async function generateMediaVariants(media: IMedia): Promise<IMedia> {
 
   if (!media.type || !IMAGES_MIME_TYPES.includes(media.type)) {
-    return;
+    return media;
   }
 
 
@@ -74,5 +74,7 @@ export async function generateMediaVariants(media: IMedia) {
       console.error(`error while making media variant`, variant[0], error?.message, media);
     }
   }
+
+  return currentMedia;
 
 }
