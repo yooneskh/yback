@@ -16,7 +16,7 @@ export {
   makeCollectionName,
   registerPopulateItem,
   transformToQueryPopulates
-} from 'https://deno.land/x/yongo@v1.3.0/mod.ts';
+} from 'https://deno.land/x/yongo@v1.3.1/mod.ts';
 
 export {
   plural
