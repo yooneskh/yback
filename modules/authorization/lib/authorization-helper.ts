@@ -64,8 +64,26 @@ export function matchPermission(permit: string, permission: string): boolean {
   const minLength = Math.min(permitParts.length, permissionParts.length);
 
   for (let index = 0; index < minLength; index++) {
-    if (permitParts[index] === '*') return true;
-    if (permitParts[index] !== permissionParts[index]) return false;
+
+    const permission = permissionParts[index];
+    const permit = permitParts[index];
+
+    if (permit.includes('**')) {
+      return permission.startsWith( permit.slice(0, permit.indexOf('**')) );
+    }
+    else if (permit.includes('*')) {
+
+      const testReg = new RegExp(`^${permit.replaceAll('*', '.+')}$`);
+
+      if (!testReg.test(permission)) {
+        return false;
+      }
+
+    }
+    else if (permit !== permission) {
+      return false;
+    }
+
   }
 
   return permitParts.length === permissionParts.length;
