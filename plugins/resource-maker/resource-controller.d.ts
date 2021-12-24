@@ -14,7 +14,7 @@ export interface IResourceControllerContext<T, TF> {
   limit?: number;
   sorts?: any;
   populates?: IResourceControllerPopulates;
-  resourceId?: string | typeof ObjectId;
+  resourceId?: string | ObjectId;
   document?: T;
   payload?: Partial<T>;
 }

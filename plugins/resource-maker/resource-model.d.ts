@@ -4,7 +4,7 @@ import { ObjectId } from '../../deps.ts';
 
 
 export interface IResourceBase {
-  _id: typeof ObjectId;
+  _id: ObjectId;
   createdAt: number;
   updatedAt: number;
 }

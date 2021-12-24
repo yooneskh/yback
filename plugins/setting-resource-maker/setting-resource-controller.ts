@@ -11,7 +11,7 @@ export class SettingResourceController<T, TF extends IResourceBase> {
   }
 
 
-  private settingId?: typeof ObjectId;
+  private settingId?: ObjectId;
 
   private async ensureItem() {
     if (this.settingId) return;
