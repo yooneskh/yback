@@ -26,7 +26,7 @@ export const Config = {
     tokenLifetime: 1000 * 60 * 60 * 24 * 30
   },
   authorization: {
-    defaultPermissions: ['user.*']
+    defaultPermissions: ['user.**']
   },
   payment: {
     core: {
