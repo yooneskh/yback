@@ -65,22 +65,22 @@ export function matchPermission(permit: string, permission: string): boolean {
 
   for (let index = 0; index < minLength; index++) {
 
-    const permission = permissionParts[index];
-    const permit = permitParts[index];
+    const curPermission = permissionParts[index];
+    const curPermit = permitParts[index];
 
-    if (permit.includes('**')) {
-      return permission.startsWith( permit.slice(0, permit.indexOf('**')) );
+    if (curPermit.includes('**')) {
+      return curPermission.startsWith( curPermit.slice(0, curPermit.indexOf('**')) );
     }
-    else if (permit.includes('*')) {
+    else if (curPermit.includes('*')) {
 
-      const testReg = new RegExp(`^${permit.replaceAll('*', '.+')}$`);
+      const testReg = new RegExp(`^${curPermit.replaceAll('*', '.+')}$`);
 
-      if (!testReg.test(permission)) {
+      if (!testReg.test(curPermission)) {
         return false;
       }
 
     }
-    else if (permit !== permission) {
+    else if (curPermit !== curPermission) {
       return false;
     }
 
