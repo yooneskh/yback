@@ -1,13 +1,16 @@
 import { RegisterTokenMaker } from './register-tokens-resource.ts';
 import './register-tokens-model.ts';
-import { isPhoneNumber } from '../../../tools/validation.ts';
+import { isEmail, isPhoneNumber } from '../../../tools/validation.ts';
 
 
 export const RegisterTokenController = RegisterTokenMaker.getController();
 
 
 RegisterTokenMaker.addValidations({
+  'email': [
+    it => !it.email || isEmail(it.email) || 'email must be like aaa@bbb.ccc'
+  ],
   'phoneNumber': [
-    it => isPhoneNumber(it.phoneNumber) || 'phone number must be like +98xxxxxxxxxx'
+    it => !it.phoneNumber || isPhoneNumber(it.phoneNumber) || 'phone number must be like +98xxxxxxxxxx'
   ]
 });
