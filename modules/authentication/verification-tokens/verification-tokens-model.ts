@@ -15,9 +15,15 @@ VerificationTokenMaker.setProperties({
   },
   channel: {
     type: 'string',
-    enum: ['sms'],
+    enum: ['sms', 'email'],
     required: true,
     title: 'کانال',
+    titleable: true
+  },
+  channelIdentifier: {
+    type: 'string',
+    required: true,
+    title: 'نشانگر کانال',
     titleable: true
   },
   code: {

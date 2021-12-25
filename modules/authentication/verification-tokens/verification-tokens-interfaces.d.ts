@@ -4,7 +4,8 @@ import type { IResourceBase } from '../../../plugins/resource-maker/resource-mod
 export interface IVerificationTokenBase<UT = string, RT = string> {
   user?: UT;
   registerToken?: RT;
-  channel: 'sms';
+  channel: 'sms' | 'email';
+  channelIdentifier: string;
   code: string;
   used?: boolean;
   usedAt?: number;
