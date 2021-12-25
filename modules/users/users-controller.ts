@@ -1,13 +1,16 @@
 import { UserMaker } from './users-resource.ts';
 import './users-model.ts';
-import { isPhoneNumber } from '../../tools/validation.ts';
+import { isEmail, isPhoneNumber } from '../../tools/validation.ts';
 
 
 export const UserController = UserMaker.getController();
 
 
 UserMaker.addValidations({
-  phoneNumber: [
+  'email': [
+    it => !it.email || isEmail(it.email) || 'email must be like aaa@bbb.ccc'
+  ],
+  'phoneNumber': [
     it => !it.phoneNumber || isPhoneNumber(it.phoneNumber) || 'phone number must be like +98xxxxxxxxxx'
   ]
 });
