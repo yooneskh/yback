@@ -62,7 +62,10 @@ app.use('/api/authentication-tokens', AuthenticationTokenRouter);
 app.use('/api/register-tokens', RegisterTokenRouter);
 app.use('/api/verification-tokens', VerificationTokenRouter);
 
-import '../modules/authentication/providers/authentication-phone-provider.ts';
+import '../modules/authentication/providers/authentication-provider-email.ts'
+import '../modules/authentication/providers/authentication-provider-phone.ts';
+
+import '../modules/authentication/lib/authentication-listeners.ts';
 
 
 import { AuthorizationTokenRouter } from '../modules/authorization/authorization-tokens/authorization-tokens-router.ts';

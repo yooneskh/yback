@@ -8,6 +8,6 @@ export const UserController = UserMaker.getController();
 
 UserMaker.addValidations({
   phoneNumber: [
-    it => isPhoneNumber(it.phoneNumber) || 'phone number must be like +98xxxxxxxxxx'
+    it => !it.phoneNumber || isPhoneNumber(it.phoneNumber) || 'phone number must be like +98xxxxxxxxxx'
   ]
 });

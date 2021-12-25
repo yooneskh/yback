@@ -3,7 +3,8 @@ import type { IResourceBase } from '../../../plugins/resource-maker/resource-mod
 
 export interface IRegisterTokenBase {
   name: string;
-  phoneNumber: string;
+  phoneNumber?: string;
+  email?: string;
   used?: boolean;
   usedAt?: number;
 } export interface IRegisterToken extends IRegisterTokenBase, IResourceBase {}

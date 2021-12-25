@@ -8,19 +8,18 @@ UserMaker.setProperties({
     title: 'نام',
     titleable: true
   },
+  email: {
+    type: 'string',
+    title: 'ایمیل'
+  },
   phoneNumber: {
     type: 'string',
-    required: true,
     title: 'شماره تلفن'
   },
   profile: {
     type: 'string',
     ref: 'Media',
     title: 'تصویر پروفایل'
-  },
-  email: {
-    type: 'string',
-    title: 'Email'
   }
 });
 

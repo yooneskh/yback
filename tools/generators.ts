@@ -6,3 +6,15 @@ export function generateUUID(parts = 3) {
     .join('-')
   );
 }
+
+export function generateRandomDigits(digits: number): string {
+
+  let result = '';
+
+  for (let i = 0; i < digits; i++) {
+    result += String(Math.random())[2];
+  }
+
+  return result;
+
+}

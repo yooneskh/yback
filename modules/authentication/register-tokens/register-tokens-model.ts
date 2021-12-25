@@ -10,8 +10,12 @@ RegisterTokenMaker.setProperties({
   },
   phoneNumber: {
     type: 'string',
-    required: true,
     title: 'شماره تلفن',
+    titleable: true
+  },
+  email: {
+    type: 'string',
+    title: 'ایمیل',
     titleable: true
   },
   used: {

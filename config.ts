@@ -64,6 +64,9 @@ export const Config = {
   notifications: {
     kavenegar: {
       apiKey: ''
+    },
+    sendInBlue: {
+      apiKey: ''
     }
   }
 };

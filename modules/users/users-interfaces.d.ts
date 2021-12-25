@@ -3,7 +3,7 @@ import type { IResourceBase } from '../../plugins/resource-maker/resource-model.
 
 export interface IUserBase<PT = string> {
   name: string;
-  phoneNumber: string;
-  profile?: PT;
   email?: string;
+  phoneNumber?: string;
+  profile?: PT;
 } export interface IUser<PT = string> extends IUserBase<PT>, IResourceBase {}

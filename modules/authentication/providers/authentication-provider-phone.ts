@@ -3,20 +3,8 @@ import { Config } from '../../../config.ts';
 import { UserController } from '../../users/users-controller.ts';
 import { VerificationTokenController } from '../verification-tokens/verification-tokens-controller.ts';
 import { RegisterTokenController } from '../register-tokens/register-tokens-controller.ts';
-import { NotFoundError } from "../../../plugins/error/handleable-error.ts";
-
-
-function makeRandomDigits(digits: number): string {
-
-  let result = '';
-
-  for (let i = 0; i < digits; i++) {
-    result += String(Math.trunc(Math.random() * 10));
-  }
-
-  return result;
-
-}
+import { NotFoundError } from '../../../plugins/error/handleable-error.ts';
+import { generateRandomDigits } from '../../../tools/generators.ts';
 
 
 registerProvider({
@@ -39,7 +27,8 @@ registerProvider({
       document: {
         user: String(user._id),
         channel: 'sms',
-        code: Config.authentication.staticVerificationCode || makeRandomDigits(Config.authentication.randomDigitsCount)
+        channelIdentifier: phoneNumber,
+        code: Config.authentication.staticVerificationCode || generateRandomDigits(Config.authentication.randomDigitsCount)
       }
     });
 
@@ -60,7 +49,7 @@ registerProvider({
     });
 
     if (prevUsers !== 0) {
-      throw new Error(`user with this phone number exists ${phoneNumber}`);
+      throw new Error(`user with this phoneNumber exists ${phoneNumber}`);
     }
 
     const registerToken = await RegisterTokenController.create({
@@ -74,7 +63,8 @@ registerProvider({
       document: {
         registerToken: String(registerToken._id),
         channel: 'sms',
-        code: Config.authentication.staticVerificationCode || makeRandomDigits(Config.authentication.randomDigitsCount)
+        channelIdentifier: phoneNumber,
+        code: Config.authentication.staticVerificationCode || generateRandomDigits(Config.authentication.randomDigitsCount)
       }
     });
 
@@ -117,6 +107,10 @@ registerProvider({
 
       if (registerToken.used) {
         throw new Error(`register token has been used ${registerToken._id}`);
+      }
+
+      if (!registerToken.phoneNumber) {
+        throw new Error(`register token does not have phoneNumber`);
       }
 
       const userDocument = await UserController.create({
