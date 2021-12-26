@@ -1,5 +1,5 @@
-import { Config } from "../../../config.ts";
-import { MediaController } from "../media-controller.ts";
+import { Config } from '../../../config.ts';
+import { MediaController } from '../media-controller.ts';
 import { IMedia } from '../media-interfaces.d.ts';
 import { transformMedia } from '../media-transformer-agent.ts';
 
@@ -55,7 +55,7 @@ export async function generateMediaVariants(media: IMedia): Promise<IMedia> {
         ]
       );
 
-     currentMedia = await MediaController.update({
+      currentMedia = await MediaController.update({
         resourceId: currentMedia._id,
         payload: {
           variantRelatives: {
@@ -73,6 +73,7 @@ export async function generateMediaVariants(media: IMedia): Promise<IMedia> {
     // deno-lint-ignore no-explicit-any
     catch (error: any) {
       console.error(`error while making media variant`, variant[0], error?.message, media);
+      throw new Error(`could not make variant ${variant[0]} because ${error?.message}`, error);
     }
   }
 

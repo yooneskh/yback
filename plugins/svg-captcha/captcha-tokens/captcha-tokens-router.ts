@@ -1,6 +1,6 @@
 import { CaptchaTokenMaker } from './captcha-tokens-resource.ts';
 import './captcha-tokens-controller.ts';
-import { generateCaptchaToken } from "./captcha-tokens-controller.ts";
+import { generateCaptchaToken } from './captcha-tokens-controller.ts';
 
 
 CaptchaTokenMaker.addActions({

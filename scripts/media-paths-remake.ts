@@ -1,5 +1,5 @@
 import { bootstrap } from '../bootstrappers/bootstrap-database.ts';
-import { Config } from "../config.ts";
+import { Config } from '../config.ts';
 import { MediaController } from '../modules/media/media-controller.ts';
 
 

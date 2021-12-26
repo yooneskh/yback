@@ -1,7 +1,8 @@
 import { MediaMaker } from './media-resource.ts';
+import './media-controller.ts';
 import { copy, ensureFile, readerFromStreamReader } from '../../deps.ts';
 import { Config } from '../../config.ts';
-import './media-controller.ts';
+import { getMediaAddons, getMediaValidators } from './media-globals.ts';
 
 
 MediaMaker.addActions({
@@ -59,11 +60,13 @@ MediaMaker.addActions({
         const relativeFilePath = `${Config.media.directory}/${mediaBase._id}.${extension}`;
         await ensureFile(`./${relativeFilePath}`);
 
+
         const stream = await file.stream();
         const reader = readerFromStreamReader(stream.getReader());
         const output = await Deno.open(`./${relativeFilePath}`, { write: true, create: true, truncate: true });
 
         await copy(reader, output);
+
 
         const fullPath = `${Config.media.baseUrl}/${relativeFilePath}`;
 
@@ -75,13 +78,45 @@ MediaMaker.addActions({
           }
         });
 
-        EventEmitter.emit('Resource.Media.Uploaded', String(newMedia._id), newMedia);
-        return newMedia;
+
+        for (const validator of getMediaValidators()) {
+          await validator(newMedia);
+        }
+
+        for (const addon of getMediaAddons()) {
+          await addon(newMedia);
+        }
+
+
+        const finalizedMedia = await controller.retrieve({ resourceId: newMedia._id });
+        EventEmitter.emit('Resource.Media.Uploaded', String(finalizedMedia._id), finalizedMedia);
+        return finalizedMedia;
 
       }
       catch (error: unknown) {
+
+        try {
+
+          const faultyMedia = await controller.retrieve({ resourceId: mediaBase._id });
+
+          const deletePaths = [
+            faultyMedia.relativePath,
+            ...(Object.values(faultyMedia.variantRelatives ?? {}))
+          ];
+
+          for (const deletePath of deletePaths) {
+            try {
+              await Deno.remove(deletePath);
+            }
+            catch {/*  */}
+          }
+
+        }
+        catch {/*  */}
+
         await controller.delete({ resourceId: mediaBase._id });
         throw error;
+
       }
 
     }

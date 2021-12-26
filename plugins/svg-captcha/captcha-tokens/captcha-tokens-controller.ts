@@ -1,7 +1,7 @@
 import { CaptchaTokenMaker } from './captcha-tokens-resource.ts';
 import './captcha-tokens-model.ts';
-import { makeSvgCaptcha } from "../make-svg-captcha.ts";
-import { Config } from "../../../config.ts";
+import { makeSvgCaptcha } from '../make-svg-captcha.ts';
+import { Config } from '../../../config.ts';
 
 
 export const CaptchaTokenController = CaptchaTokenMaker.getController();
