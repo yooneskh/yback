@@ -3,6 +3,7 @@ import './media-controller.ts';
 import { copy, ensureFile, readerFromStreamReader } from '../../deps.ts';
 import { Config } from '../../config.ts';
 import { getMediaAddons, getMediaValidators } from './media-globals.ts';
+import { EventEmitter } from '../../services/event-emitter.ts';
 
 
 MediaMaker.addActions({

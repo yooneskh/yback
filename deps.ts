@@ -7,7 +7,7 @@ export {
   Router,
   RequestEvent,
   HttpResponse
-} from 'https://deno.land/x/nhttp@1.1.0/mod.ts';
+} from 'https://deno.land/x/nhttp@1.1.1/mod.ts';
 
 export {
   connect,
