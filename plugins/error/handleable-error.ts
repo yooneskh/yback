@@ -1,4 +1,4 @@
-import { RequestEvent } from '../../deps.ts';
+import { RequestEvent, TObject } from '../../deps.ts';
 
 
 export class HandleableError extends Error {
@@ -29,7 +29,7 @@ export class BypassRouteError extends HandleableError {
 }
 
 
-export function handleNHttpError(error: Error, rev: RequestEvent) {
+export function handleNHttpError(error: TObject, rev: RequestEvent) {
 
   if (error instanceof HandleableError) {
     if (error instanceof BypassRouteError) return;
