@@ -22,8 +22,10 @@ export interface IResourceProperty {
   seriesBase?: Record<string, unknown>;
   seriesSchema?: IResourceProperties<any, any>;
   itemWidth?: number;
-  /* meta */
+  /* validation */
   vIf?: any;
+  validator?: string | RegExp | ((it: any) => void | boolean | string);
+  /* meta */
   title?: string;
   titleable?: boolean;
   items?: string[] | { value: string, text: string }[];

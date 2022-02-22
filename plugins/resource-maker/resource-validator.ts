@@ -30,7 +30,7 @@ export class ResourceValidator<T, TF extends IResourceBase> {
         // deno-lint-ignore no-explicit-any
         [key as any]: [
           (it: T) => {
-            validateElement(it[key], property, key);
+            validateElement(it, it[key], property, key);
             return true;
           }
         ]

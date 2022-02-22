@@ -1,17 +1,57 @@
 import { IResourceProperties, IResourceProperty } from './resource-model.d.ts';
+import { matches } from '../safe-filter/matcher.ts';
 
 
 // deno-lint-ignore no-explicit-any
-export function validateElement<T, TF>(element: any, property: IResourceProperty, keyPath: string) {
+export function validateElement<T, TF>(document: Record<keyof T, unknown>, element: any, property: IResourceProperty, keyPath: string) {
+
+  if (property.vIf) {
+    if (!matches(property.vIf, document)) {
+      return;
+    }
+  }
+
+  if (property.validator) {
+
+    if (typeof property.validator === 'string') {
+      if (!new RegExp(property.validator).test(element)) {
+        throw new Error(`${keyPath} does not conform to ${property.validator} regex.`);
+      }
+    }
+    else if (property.validator instanceof RegExp) {
+      if (!property.validator.test(element)) {
+        throw new Error(`${keyPath} does not conform to conditions.`);
+      }
+    }
+    else {
+
+      try {
+
+        const result = property.validator(element);
+
+        if (typeof result === 'string' || result === false) {
+          throw new Error(result ? `${keyPath}: ${result}` : `${keyPath} is unacceptable.`);
+        }
+
+      }
+      catch (error) {
+        throw new Error(error.message ? `${keyPath}: ${error.message}` : `${keyPath} is unacceptable.`)
+      }
+
+    }
+
+  }
+
+
   if (property.variants) {
 
     if (!( typeof element === 'object' && !Array.isArray(element) && !!element || (element === undefined && !property.required) )) {
-      throw new Error(`${keyPath} is not localed object`);
+      throw new Error(`${keyPath} is not variated object`);
     }
 
     if (element) {
       for (const variant in property.variants) {
-        validateElement(element[variant], { ...property, ...property.variants[variant], variants: undefined }, `${keyPath}.${variant}`);
+        validateElement(document, element[variant], { ...property, ...property.variants[variant], variants: undefined }, `${keyPath}.${variant}`);
       }
     }
 
@@ -23,7 +63,7 @@ export function validateElement<T, TF>(element: any, property: IResourceProperty
     }
 
     for (const subindex in element ?? []) {
-      validateElement(element[subindex], { ...property, array: false }, `${keyPath}.${subindex}`);
+      validateElement(document, element[subindex], { ...property, array: false }, `${keyPath}.${subindex}`);
     }
 
   }
@@ -66,6 +106,7 @@ export function validateElement<T, TF>(element: any, property: IResourceProperty
   else {
     throw new Error(`${property.type} validation for ${keyPath} is not defined.`);
   }
+
 }
 
 export function validateDocument<T, TF>(document: Record<keyof T, unknown>, properties: IResourceProperties<T, TF>, keyPath: string, optional = false): void {
@@ -75,7 +116,7 @@ export function validateDocument<T, TF>(document: Record<keyof T, unknown>, prop
   }
 
   for (const key in properties) {
-    validateElement(document[key], properties[key as keyof T], `${keyPath}.${key}`)
+    validateElement(document, document[key], properties[key as keyof T], `${keyPath}.${key}`)
   }
 
 }

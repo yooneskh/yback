@@ -41,7 +41,7 @@ export async function getAuthorizationInfoForUser(userId: string): Promise<IUser
   }
 
   const permissions: string[] = [
-    ...authorizationToken.permissions,
+    ...(authorizationToken.permissions || []),
     ...(
       ((authorizationToken.roles || []) as unknown as IAuthorizationRole[]).flatMap(it =>
         it.permissions
