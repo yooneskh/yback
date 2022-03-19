@@ -45,51 +45,51 @@ import '../plugins/svg-captcha/captcha-router-addon.ts';
 
 /* global modules */
 
-import '../modules/authentication/lib/authentication-router-addon.ts';
-import '../modules/authorization/lib/authorization-router-addon.ts';
+import '../modules/authentication/lib/router-addon.ts';
+import '../modules/authorization/lib/router-addon.ts';
 
 
-import { UserRouter } from '../modules/users/users-router.ts';
+import { UserRouter } from '../modules/users/router.ts';
 app.use('/api/users', UserRouter);
 
 
-import { AuthenticationRouter } from '../modules/authentication/authentication-router/authentication-router.ts';
-import { AuthenticationTokenRouter } from '../modules/authentication/authentication-tokens/authentication-tokens-router.ts';
-import { RegisterTokenRouter } from '../modules/authentication/register-tokens/register-tokens-router.ts';
-import { VerificationTokenRouter } from '../modules/authentication/verification-tokens/verification-tokens-router.ts';
+import { AuthenticationRouter } from '../modules/authentication/authentication-router/router.ts';
+import { AuthenticationTokenRouter } from '../modules/authentication/authentication-tokens/router.ts';
+import { RegisterTokenRouter } from '../modules/authentication/register-tokens/router.ts';
+import { VerificationTokenRouter } from '../modules/authentication/verification-tokens/router.ts';
 app.use('/api/authentication', AuthenticationRouter);
 app.use('/api/authentication-tokens', AuthenticationTokenRouter);
 app.use('/api/register-tokens', RegisterTokenRouter);
 app.use('/api/verification-tokens', VerificationTokenRouter);
 
-import '../modules/authentication/providers/authentication-provider-email.ts'
-import '../modules/authentication/providers/authentication-provider-phone.ts';
+import '../modules/authentication/providers/email.ts'
+import '../modules/authentication/providers/phone.ts';
 
-import '../modules/authentication/lib/authentication-listeners.ts';
+import '../modules/authentication/lib/listeners.ts';
 
 
-import { AuthorizationTokenRouter } from '../modules/authorization/authorization-tokens/authorization-tokens-router.ts';
-import { AuthorizationRoleRouter } from '../modules/authorization/authorization-roles/authorization-roles-router.ts';
+import { AuthorizationTokenRouter } from '../modules/authorization/authorization-tokens/router.ts';
+import { AuthorizationRoleRouter } from '../modules/authorization/authorization-roles/router.ts';
 app.use('/api/authorization-tokens', AuthorizationTokenRouter);
 app.use('/api/authorization-roles', AuthorizationRoleRouter);
 
 
-import { MediaRouter } from '../modules/media/media-router.ts';
+import { MediaRouter } from '../modules/media/router.ts';
 app.use('/api/media', MediaRouter);
 
-import '../modules/media/lib/media-validators.ts';
-import '../modules/media/lib/media-addons.ts';
+import '../modules/media/lib/validators.ts';
+import '../modules/media/lib/addons.ts';
 
 
-import { FactorRouter } from '../modules/payment/factors/factors-router.ts';
-import { PayticketRouter } from '../modules/payment/paytickets/paytickets-router.ts';
+import { FactorRouter } from '../modules/payment/factors/router.ts';
+import { PayticketRouter } from '../modules/payment/paytickets/router.ts';
 app.use('/api/factors', FactorRouter);
 app.use('/api/paytickets', PayticketRouter);
 
-import '../modules/payment/paytickets/paytickets-gateway-zarinpal.ts';
+import '../modules/payment/paytickets/gateway-zarinpal.ts';
 
 
-import { ApplicationSettingRouter } from '../modules/application-settings/application-settings-router.ts';
+import { ApplicationSettingRouter } from '../modules/application-settings/router.ts';
 app.use('/api/application-settings', ApplicationSettingRouter);
 
 

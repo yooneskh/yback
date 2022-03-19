@@ -4,12 +4,12 @@ const timeStart = Date.now();
 
 
 async function bootstrapDatabase() {
-  const { bootstrap } = await import('./bootstrappers/bootstrap-database.ts');
+  const { bootstrap } = await import('./bootstrappers/database.ts');
   await bootstrap();
 }
 
 async function bootstrapHttp() {
-  const { bootstrap } = await import('./bootstrappers/bootstrap-http.ts');
+  const { bootstrap } = await import('./bootstrappers/http.ts');
   await bootstrap(timeStart);
 }
 
