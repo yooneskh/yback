@@ -36,7 +36,7 @@ EventEmitter.on('Resource.VerificationToken.Created', async (_event: string, _ve
     senderEmail: 'noreply@aboutshiraz.com',
     receivers: [
       {
-        name: '',
+        name: 'Authentication',
         email: channelIdentifier
       }
     ],
