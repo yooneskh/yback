@@ -45,7 +45,7 @@ export function validateElement<T, TF>(document: Record<keyof T, unknown>, eleme
 
   if (property.variants) {
 
-    if (!( typeof element === 'object' && !Array.isArray(element) && !!element || (element === undefined && !property.required) )) {
+    if (!( typeof element === 'object' && !Array.isArray(element) && !!element || ((element === undefined || element === null) && !property.required) )) {
       throw new Error(`${keyPath} is not variated object`);
     }
 
