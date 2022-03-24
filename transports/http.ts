@@ -89,6 +89,13 @@ app.use('/api/paytickets', PayticketRouter);
 import '../modules/payment/paytickets/gateway-zarinpal.ts';
 
 
+import { AccountRouter } from '../modules/accounting/accounts/router.ts';
+app.use('/api/accounts', AccountRouter);
+
+import '../modules/accounting/accounts/lib/bootstrap.ts';
+import '../modules/accounting/accounts/lib/listeners.ts';
+
+
 import { ApplicationSettingRouter } from '../modules/application-settings/router.ts';
 app.use('/api/application-settings', ApplicationSettingRouter);
 

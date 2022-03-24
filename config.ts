@@ -68,6 +68,26 @@ export const Config = {
     sendInBlue: {
       apiKey: ''
     }
+  },
+  accounting: {
+    specialAccounts: [
+      {
+        name: 'Global Source',
+        identifier: 'global-source',
+        balance: 0,
+        acceptsInput: false,
+        acceptsOutput: true,
+        allowsNegativeBalance: true
+      },
+      {
+        name: 'Global Drain',
+        identifier: 'global-drain',
+        balance: 0,
+        acceptsInput: true,
+        acceptsOutput: false,
+        allowsNegativeBalance: false
+      }
+    ]
   }
 };
 
