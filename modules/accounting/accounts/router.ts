@@ -22,11 +22,11 @@ AccountMaker.addActions({
   },
   'update': {
     template: 'update',
-    permission: 'admin.account.update'
+    permission: 'special.account.update'
   },
   'delete': {
     template: 'delete',
-    permission: 'admin.account.delete',
+    permission: 'special.account.delete',
     stateValidators: [
       async ({ resourceId, controller }) => {
 

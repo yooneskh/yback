@@ -30,3 +30,29 @@ AccountMaker.addValidations({
     )
   ]
 });
+
+
+export async function getAccountForUser(userId: string) {
+
+  const account = await AccountController.findBy({
+    filters: {
+      user: userId
+    }
+  });
+
+  if (account) {
+    return account;
+  }
+
+
+  return AccountController.create({
+    document: {
+      user: userId,
+      balance: 0,
+      acceptsInput: true,
+      acceptsOutput: true,
+      allowNegativeBalance: false
+    }
+  });
+
+}
