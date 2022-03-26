@@ -90,10 +90,11 @@ import '../modules/payment/paytickets/gateway-zarinpal.ts';
 
 
 import { AccountRouter } from '../modules/accounting/accounts/router.ts';
+import { TransferRouter } from '../modules/accounting/transfers/router.ts';
 app.use('/api/accounts', AccountRouter);
+app.use('/api/transfers', TransferRouter);
 
 import '../modules/accounting/accounts/lib/bootstrap.ts';
-import '../modules/accounting/accounts/lib/listeners.ts';
 
 
 import { ApplicationSettingRouter } from '../modules/application-settings/router.ts';
