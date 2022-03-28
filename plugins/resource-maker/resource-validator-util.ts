@@ -59,7 +59,7 @@ export function validateElement<T, TF>(document: Record<keyof T, unknown>, eleme
   else if (property.array) {
 
     if (!( typeof element === 'object' && Array.isArray(element) && !!element || (element === undefined && !property.required) )) {
-      throw new Error(`${keyPath} is not boolean`);
+      throw new Error(`${keyPath} is not array`);
     }
 
     for (const subindex in element ?? []) {
