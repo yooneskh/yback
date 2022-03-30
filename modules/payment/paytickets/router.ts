@@ -7,6 +7,8 @@ import { Config } from '../../../config.ts';
 import { makePaymentErrorPage } from '../payment-results/error.ts';
 import { getGatewayHandler } from './gateways.ts';
 import { BypassRouteError } from '../../../plugins/error/handleable-error.ts';
+import { getAccountForUser } from '../../accounting/accounts/controller.ts';
+import { createTransfer, getGlobalSourceAccount } from '../../accounting/transfers/controller.ts';
 
 
 PayticketMaker.addActions({
@@ -134,6 +136,22 @@ PayticketMaker.addActions({
             payedAt: Date.now()
           }
         });
+
+
+        if (factor.user) {
+
+          const userAccount = await getAccountForUser(factor.user!);
+          const globalSourceAccount = await getGlobalSourceAccount();
+
+          await createTransfer(
+            String(globalSourceAccount._id),
+            String(userAccount._id),
+            factor.amount,
+            factor.name
+          );
+
+        }
+
 
         EventEmitter.emit('Resource.Payticket.Resolved', String(updatedPayticket._id), updatedPayticket);
         EventEmitter.emit('Resource.Payticket.Payed', String(updatedPayticket._id), updatedPayticket);

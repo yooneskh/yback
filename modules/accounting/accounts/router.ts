@@ -1,6 +1,6 @@
 import { AccountMaker } from './resource.ts';
 import './controller.ts';
-import { UserController } from "../../users/controller.ts";
+import { UserController } from '../../users/controller.ts';
 
 
 AccountMaker.addActions({

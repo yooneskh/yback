@@ -1,6 +1,6 @@
 import { TransferMaker } from './resource.ts';
 import './controller.ts';
-import { createTransfer } from "./controller.ts";
+import { createTransfer } from './controller.ts';
 
 
 TransferMaker.addActions({

@@ -68,3 +68,12 @@ export async function createTransfer(fromAccountId: string, toAccountId: string,
   return transfer;
 
 }
+
+
+export function getGlobalSourceAccount() {
+  return AccountController.retrieveBy({
+    filters: {
+      identifier: 'global-source'
+    }
+  });
+}

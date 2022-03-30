@@ -1,5 +1,5 @@
-import { Config } from "../../../../config.ts";
-import { AccountController } from "../controller.ts";
+import { Config } from '../../../../config.ts';
+import { AccountController } from '../controller.ts';
 
 
 (async () => {
