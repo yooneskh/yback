@@ -16,11 +16,13 @@ export interface IResourceProperty {
   required?: boolean;
   default?: any;
   enum?: any[];
+  handlerElement?: string;
   /* series */
   seriesIdentifier?: string;
   seriesLoopTo?: string;
   seriesBase?: Record<string, unknown>;
   seriesSchema?: IResourceProperties<any, any>;
+  seriesReportGroupBy?: string;
   itemWidth?: number;
   /* validation */
   vIf?: any;
@@ -38,6 +40,8 @@ export interface IResourceProperty {
   hidden?: boolean;
   longText?: boolean;
   richText?: boolean;
+  labelFormat?: string;
+  valueFormat?: string;
   geo?: 'point';
   defaultCenter?: [longitude: number, latitude: number];
   defaultZoom?: number;
