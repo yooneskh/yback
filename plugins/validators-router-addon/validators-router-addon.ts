@@ -16,13 +16,13 @@ ResourceMaker.addGlobalActionAugmentor(action => {
 
   if (!action.stateValidators) {
     return {
-      stateValidators: [],
+      stateValidators: []
     };
   }
 
   if (!action.payloadValidators) {
     return {
-      payloadValidators: [],
+      payloadValidators: []
     };
   }
 

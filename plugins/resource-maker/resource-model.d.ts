@@ -45,6 +45,7 @@ export interface IResourceProperty {
   geo?: 'point';
   defaultCenter?: [longitude: number, latitude: number];
   defaultZoom?: number;
+  disabled?: boolean;
   /* temporary */
   nonCreating?: boolean;
 }
