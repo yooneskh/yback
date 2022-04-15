@@ -6,19 +6,19 @@ import { createTransfer } from './controller.ts';
 TransferMaker.addActions({
   'list': {
     template: 'list',
-    permission: 'admin.transfer.list'
+    permission: 'admin.accounting.transfer.list'
   },
   'count': {
     template: 'count',
-    permission: 'admin.transfer.count'
+    permission: 'admin.accounting.transfer.count'
   },
   'retrieve': {
     template: 'retrieve',
-    permission: 'admin.transfer.retrieve'
+    permission: 'admin.accounting.transfer.retrieve'
   },
   'create': {
     template: 'create',
-    permission: 'admin.transfer.create',
+    permission: 'admin.accounting.transfer.create',
     provider: ({ payload }) => {
       return createTransfer(
         payload.fromAccount,
@@ -30,11 +30,11 @@ TransferMaker.addActions({
   },
   'update': {
     template: 'update',
-    permission: 'special.transfer.update'
+    permission: 'special.accounting.transfer.update'
   },
   'delete': {
     template: 'delete',
-    permission: 'special.transfer.delete'
+    permission: 'special.accounting.transfer.delete'
   }
 });
 

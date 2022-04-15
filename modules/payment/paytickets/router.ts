@@ -14,21 +14,21 @@ import { createTransfer, getGlobalSourceAccount } from '../../accounting/transfe
 PayticketMaker.addActions({
   'list': {
     template: 'list',
-    permission: 'admin.payticket.list'
+    permission: 'admin.payment.payticket.list'
   },
   'count': {
     template: 'count',
-    permission: 'admin.payticket.count'
+    permission: 'admin.payment.payticket.count'
   },
   'retrieve': {
     template: 'retrieve',
-    permission: 'admin.payticket.retrieve'
+    permission: 'admin.payment.payticket.retrieve'
   },
   'create': {
     signal: 'Route.Payticket.Create',
     method: 'post',
     path: '/',
-    permission: 'admin.payticket.create',
+    permission: 'admin.payment.payticket.create',
     provider: async ({ payload }) => {
 
       const payticket = await createPayticket({
@@ -45,7 +45,7 @@ PayticketMaker.addActions({
   },
   'update': {
     template: 'update',
-    permission: 'admin.payticket.update',
+    permission: 'admin.payment.payticket.update',
     stateValidators: [
       async ({ resourceId, controller }) => {
         const payticket = await controller.retrieve({ resourceId });
@@ -57,7 +57,7 @@ PayticketMaker.addActions({
   },
   'delete': {
     template: 'delete',
-    permission: 'admin.payticket.delete',
+    permission: 'admin.payment.payticket.delete',
     stateValidators: [
       async ({ resourceId, controller }) => {
         const payticket = await controller.retrieve({ resourceId });

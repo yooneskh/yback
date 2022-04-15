@@ -5,23 +5,23 @@ import './controller.ts';
 FactorMaker.addActions({
   'list': {
     template: 'list',
-    permission: 'admin.factor.list'
+    permission: 'admin.payment.factor.list'
   },
   'count': {
     template: 'count',
-    permission: 'admin.factor.count'
+    permission: 'admin.payment.factor.count'
   },
   'retrieve': {
     template: 'retrieve',
-    permission: 'admin.factor.retrieve'
+    permission: 'admin.payment.factor.retrieve'
   },
   'create': {
     template: 'create',
-    permission: 'admin.factor.create'
+    permission: 'admin.payment.factor.create'
   },
   'update': {
     template: 'update',
-    permission: 'admin.factor.update',
+    permission: 'admin.payment.factor.update',
     stateValidators: [
       async ({ resourceId, controller }) => {
         const factor = await controller.retrieve({ resourceId });
@@ -31,7 +31,7 @@ FactorMaker.addActions({
   },
   'delete': {
     template: 'delete',
-    permission: 'admin.factor.delete',
+    permission: 'admin.payment.factor.delete',
     stateValidators: [
       async ({ resourceId, controller }) => {
         const factor = await controller.retrieve({ resourceId });

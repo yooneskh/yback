@@ -6,27 +6,27 @@ import { UserController } from '../../users/controller.ts';
 AccountMaker.addActions({
   'list': {
     template: 'list',
-    permission: 'admin.account.list'
+    permission: 'admin.accounting.account.list'
   },
   'count': {
     template: 'count',
-    permission: 'admin.account.count'
+    permission: 'admin.accounting.account.count'
   },
   'retrieve': {
     template: 'retrieve',
-    permission: 'admin.account.retrieve'
+    permission: 'admin.accounting.account.retrieve'
   },
   'create': {
     template: 'create',
-    permission: 'admin.account.create'
+    permission: 'admin.accounting.account.create'
   },
   'update': {
     template: 'update',
-    permission: 'special.account.update'
+    permission: 'special.accounting.account.update'
   },
   'delete': {
     template: 'delete',
-    permission: 'special.account.delete',
+    permission: 'special.accounting.account.delete',
     stateValidators: [
       async ({ resourceId, controller }) => {
 
@@ -49,7 +49,7 @@ AccountMaker.addActions({
     method: 'get',
     path: '/retrieve/mine',
     signal: 'Route.Account.RetrieveMine',
-    permission: 'user.account.retrieve-mine',
+    permission: 'user.accounting.account.retrieve-mine',
     provider: ({ user, controller }) => {
 
       return controller.retrieveBy({

@@ -5,27 +5,27 @@ import './controller.ts';
 VerificationTokenMaker.addActions({
   'list': {
     template: 'list',
-    permission: 'admin.verification-token.list'
+    permission: 'admin.authentication.verification-token.list'
   },
   'count': {
     template: 'count',
-    permission: 'admin.verification-token.count'
+    permission: 'admin.authentication.verification-token.count'
   },
   'retrieve': {
     template: 'retrieve',
-    permission: 'admin.verification-token.retrieve'
+    permission: 'admin.authentication.verification-token.retrieve'
   },
   'create': {
     template: 'create',
-    permission: 'admin.verification-token.create'
+    permission: 'admin.authentication.verification-token.create'
   },
   'update': {
     template: 'update',
-    permission: 'admin.verification-token.update'
+    permission: 'admin.authentication.verification-token.update'
   },
   'delete': {
     template: 'delete',
-    permission: 'admin.verification-token.delete'
+    permission: 'admin.authentication.verification-token.delete'
   }
 });
 
