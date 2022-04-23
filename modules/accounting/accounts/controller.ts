@@ -8,7 +8,7 @@ export const AccountController = AccountMaker.getController();
 AccountMaker.addValidations({
   name: [
     it => (
-      !it.name || it.identifier || 'account with name must have identifier'
+      !it.name || !!it.identifier || 'account with name must have identifier'
     )
   ],
   user: [
@@ -21,7 +21,7 @@ AccountMaker.addValidations({
   ],
   identifier: [
     it => (
-      !it.identifier || it.name || 'account with identifier must have name'
+      !it.identifier || !!it.name || 'account with identifier must have name'
     )
   ],
   balance: [
