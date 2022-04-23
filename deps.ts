@@ -20,22 +20,22 @@ export {
   makeCollectionName,
   registerPopulateItem,
   transformToQueryPopulates
-} from 'https://deno.land/x/yongo@v1.3.5/mod.ts';
+} from 'https://deno.land/x/yongo@v1.4.3/mod.ts';
 
 export {
   plural
-} from 'https://deno.land/x/deno_plural@1.0.1/mod.ts';
+} from 'https://deno.land/x/deno_plural@1.1.0/mod.ts';
 
 export {
   copy
-} from 'https://deno.land/std@0.135.0/io/util.ts';
+} from 'https://deno.land/std@0.136.0/io/util.ts';
 
 export {
   readerFromStreamReader
-} from 'https://deno.land/std@0.135.0/io/mod.ts';
+} from 'https://deno.land/std@0.136.0/io/mod.ts';
 
 export {
   ensureFile
-} from 'https://deno.land/std@0.135.0/fs/mod.ts';
+} from 'https://deno.land/std@0.136.0/fs/mod.ts';
 
 export * as RateLimiterFlexible from 'https://dev.jspm.io/rate-limiter-flexible@2.3.1';
