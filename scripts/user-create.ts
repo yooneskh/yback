@@ -1,13 +1,14 @@
-import { bootstrap } from '../bootstrappers/bootstrap-database.ts';
-import { UserController } from '../modules/users/users-controller.ts';
-import { IUser } from '../modules/users/users-interfaces.d.ts';
-import { AuthorizationTokenController } from '../modules/authorization/authorization-tokens/authorization-tokens-controller.ts';
-import { IAuthorizationToken } from '../modules/authorization/authorization-tokens/authorization-tokens-interfaces.d.ts';
+import { bootstrap } from '../bootstrappers/database.ts';
+import { UserController } from '../modules/users/controller.ts';
+import { IUser } from '../modules/users/interfaces.d.ts';
+import { AuthorizationTokenController } from '../modules/authorization/authorization-tokens/controller.ts';
+import { IAuthorizationToken } from '../modules/authorization/authorization-tokens/interfaces.d.ts';
 
 
 const USER_NAME = 'یونس خوش قدم';
 const USER_PHONE_NUMBER = '+989364524952';
-const USER_PERMISSIONS = ['user.*', 'admin.*']
+const USER_EMAIL = 'yooneskh@gmail.com';
+const USER_PERMISSIONS = ['user.**', 'admin.**']
 
 
 await bootstrap();
@@ -21,7 +22,8 @@ try {
   user = await UserController.create({
     document: {
       name: USER_NAME,
-      phoneNumber: USER_PHONE_NUMBER
+      phoneNumber: USER_PHONE_NUMBER,
+      email: USER_EMAIL
     }
   });
 
