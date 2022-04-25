@@ -39,3 +39,7 @@ export {
 } from 'https://deno.land/std@0.136.0/fs/mod.ts';
 
 export * as RateLimiterFlexible from 'https://dev.jspm.io/rate-limiter-flexible@2.3.1';
+
+export {
+  SmtpClient
+} from 'https://deno.land/x/smtp@v0.7.0/mod.ts';

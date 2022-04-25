@@ -67,6 +67,12 @@ export const Config = {
     },
     sendInBlue: {
       apiKey: ''
+    },
+    smtp: {
+      host: '',
+      port: 25,
+      username: '',
+      password: ''
     }
   },
   accounting: {
