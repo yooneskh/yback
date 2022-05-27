@@ -7,7 +7,11 @@ export function makeSvgCaptcha() {
 
   const captcha = {
     text: code,
-    svgContext: `<svg viewBox="0 0 200 44"><text x="55" y="20">${code}</text></svg>`
+    svgContext: `<svg viewBox="0 0 69 14">
+      <text x="50%" y="98%" text-anchor="middle">
+        ${code}
+      </text>
+    </svg>`
   }
 
   return {
